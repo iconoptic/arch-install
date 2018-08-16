@@ -30,10 +30,13 @@ fi
 fdisk $diskpath
 
 mkfs.ext4 `echo "$diskpath"1`
-mkswap `echo "$diskpath"2`
-swapon `echo "$diskpath"2`
+mkfs.ext4 `echo "$diskpath"2`
+mkswap `echo "$diskpath"3`
+swapon `echo "$diskpath"3`
 
 mount `echo "$diskpath"1` /mnt
+mkdir /mnt/boot
+mount `echo "$diskpath"2` /mnt/boot
 
 pacman -Sy pacman-contrib --noconfirm
 
